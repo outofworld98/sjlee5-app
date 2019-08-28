@@ -1,0 +1,52 @@
+buildscript {
+	ext {
+		springBootVersion = "2.0.6.RELEASE"
+	}
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+	}
+}
+
+
+plugins {
+	id "java"
+}
+
+apply plugin: 'org.springframework.boot'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+	compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+	compile("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
+	compile("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
+
+	compile("mysql:mysql-connector-java:6.0.6")
+
+	testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+	testCompile("org.mockito:mockito-core:2.23.4")
+}
+
+springBoot {
+	buildInfo()
+}
+
+bootRun.environment([
+		"WELCOME_MESSAGE": "hello from sjlee5",
+		"MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE": "*",
+		"MANAGEMENT_ENDPOINT_HEALTH_SHOWDETAILS": "always",
+])
+
+test.environment([
+		"WELCOME_MESSAGE": "Hello from sjlee5",
+		"MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE": "*",
+		"MANAGEMENT_ENDPOINT_HEALTH_SHOWDETAILS": "always",
+])

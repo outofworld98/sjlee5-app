@@ -1,0 +1,7 @@
+---
+applications:
+  - name: helloworld
+    path: build/libs/helloworld.jar
+    random-route: true
+    env:
+      WELCOME_MESSAGE: Hello from SJLEE5
